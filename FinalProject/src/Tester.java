@@ -2,9 +2,9 @@ import java.util.*;
 import java.io.*;
 
 public class Tester {
-	static Foods foods = new Foods(100);
-	static Clothes clothes = new Clothes(500);
-	static Entertainment entertainments = new Entertainment(1000);
+	static Foods foods = new Foods(7500);
+	static Clothes clothes = new Clothes(3000);
+	static Entertainment entertainments = new Entertainment(2000);
 	static int check;
 	static Scanner sc = new Scanner(System.in);
 	
@@ -21,9 +21,23 @@ public class Tester {
 	}
 	
 	public static void alert() {
-		foods.alert();
-		clothes.alert();
-		entertainments.alert();
+		if(foods.getTotal() >= foods.getLimit()*0.8) {
+			System.out.println("食物消費已達80%, 請謹慎消費！");
+		}else if(foods.getTotal() >= foods.getLimit()) {
+			System.out.println("食物消費已超過上限, 請謹慎消費！");
+		}
+		
+		if(clothes.getTotal() >= clothes.getLimit()*0.8) {
+			System.out.println("衣著消費已達80%, 請謹慎消費！");
+		}else if(clothes.getTotal() >= clothes.getLimit()) {
+			System.out.println("衣著消費已超過上限, 請謹慎消費！");
+		}
+		
+		if(entertainments.getTotal() >= entertainments.getLimit()*0.8) {
+			System.out.println("娛樂消費已達80%, 請謹慎消費！");
+		}else if(entertainments.getTotal() >= entertainments.getLimit()) {
+			System.out.println("娛樂消費已超過上限, 請謹慎消費！");
+		}
 	}
 	
 	public static String summary() {

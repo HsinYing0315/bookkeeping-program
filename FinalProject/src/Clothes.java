@@ -15,6 +15,10 @@ public class Clothes {
 		return limit;
 	}
 	
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	
 	public void addClothes(String name, int price) {
 		Purchase pur = new Purchase(name, price);
 		clothes.add(pur);
@@ -45,11 +49,6 @@ public class Clothes {
 		return detail;
 	}
 	
-	public void alert() {
-		if(this.getTotal() == limit * 0.8) {
-			System.out.println("此類別消費已達80%，請謹慎消費！");
-		}
-	}
 }
 
 

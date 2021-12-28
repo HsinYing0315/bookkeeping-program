@@ -18,11 +18,21 @@ public class Foods {
 		return limit;
 	}
 	
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	
 	public void addFoods(String name, int price) {
 		Purchase pur = new Purchase(name, price);
 		foods.add(pur);
-//		writer.write(name + " " + price);
-//		writer.close();
+		try {
+			FileWriter writer = new FileWriter("foods.txt");
+			writer.write(name + " " + price);
+			writer.close();
+			System.out.println("記錄成功！");
+		}catch(IOException e) {
+			System.out.println(e);
+		}
 		System.out.println("記錄成功！");
 		
 	}
@@ -42,12 +52,6 @@ public class Foods {
 		}
 		detail = "食物: \n" + detail + "\nTotal: " + this.getTotal() + "\n";
 		return detail;
-	}
-	
-	public void alert() {
-		if(this.getTotal() == limit * 0.8) {
-			System.out.println("此類別消費已達80%，請謹慎消費！");
-		}
 	}
 
 }
