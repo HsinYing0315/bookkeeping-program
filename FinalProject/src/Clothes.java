@@ -2,11 +2,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class Clothes extends Foods{
+public class Clothes {
 	private ArrayList<Purchase>clothes;
+	private int limit;
 	
 	public Clothes(int limit) {
-		super(limit);
+		this.limit = limit;
 		this.clothes = new ArrayList<Purchase>();
 	}
 	
@@ -45,7 +46,9 @@ public class Clothes extends Foods{
 	}
 	
 	public void alert() {
-		super.alert();
+		if(this.getTotal() == limit * 0.8) {
+			System.out.println("此類別消費已達80%，請謹慎消費！");
+		}
 	}
 }
 

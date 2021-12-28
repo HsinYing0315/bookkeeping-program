@@ -1,15 +1,17 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Foods {
 	private ArrayList<Purchase>foods;
-	private Total total;
-	protected int limit;
+	private int limit;
+//	private File detail;
+//	private FileWriter writer;
 	
 	public Foods(int limit) {
 		this.limit = limit;
 		this.foods = new ArrayList<Purchase>();
+//		this.detail = new File("foods.txt");
+//		this.writer = new FileWriter("foods.txt");
 	}
 	
 	public int getLimit() {
@@ -19,15 +21,9 @@ public class Foods {
 	public void addFoods(String name, int price) {
 		Purchase pur = new Purchase(name, price);
 		foods.add(pur);
-		try {
-			FileWriter writer = new FileWriter("foods.txt");
-			writer.write(name + " " + price);
-			writer.close();
-			System.out.println("記錄成功！");
-		}catch(IOException e) {
-			System.out.println(e);
-		}
-//		total.expense(pur);
+//		writer.write(name + " " + price);
+//		writer.close();
+		System.out.println("記錄成功！");
 		
 	}
 	
