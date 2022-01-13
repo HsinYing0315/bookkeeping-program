@@ -1,5 +1,3 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 public class Entertainment {
@@ -11,6 +9,10 @@ public class Entertainment {
 		this.entertainments = new ArrayList<Purchase>();
 	}
 	
+	public ArrayList<Purchase> getList(){
+		return entertainments;
+	}
+	
 	public int getLimit() {
 		return limit;
 	}
@@ -19,17 +21,17 @@ public class Entertainment {
 		this.limit = limit;
 	}
 	
-	public void addEntertainments(String name, int price) {
-		Purchase pur = new Purchase(name, price);
-		entertainments.add(pur);
-		try {
-			FileWriter writer = new FileWriter("entertainments.txt");
-			writer.write(name + " " + price);
-			writer.close();
-			System.out.println("記錄成功！");
-		}catch(IOException e) {
-			System.out.println(e);
+	public void addEntertainments(String name, int price, Scanner sc) {
+		System.out.println("1. cash, 2. on credit");
+		int check = sc.nextInt();
+		if(check == 1) {
+			Purchase pur = new Purchase(name, price);
+			entertainments.add(pur);
+		}else {
+			Purchase credit = new Credit(name, price);
+			entertainments.add(credit);
 		}
+		System.out.println("記錄成功！");
 	}
 	
 	public int getTotal() {

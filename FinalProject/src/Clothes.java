@@ -1,5 +1,3 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 public class Clothes {
@@ -11,6 +9,10 @@ public class Clothes {
 		this.clothes = new ArrayList<Purchase>();
 	}
 	
+	public ArrayList<Purchase> getList(){
+		return clothes;
+	}
+	
 	public int getLimit() {
 		return limit;
 	}
@@ -19,17 +21,17 @@ public class Clothes {
 		this.limit = limit;
 	}
 	
-	public void addClothes(String name, int price) {
-		Purchase pur = new Purchase(name, price);
-		clothes.add(pur);
-		try {
-			FileWriter writer = new FileWriter("clothes.txt");
-			writer.write(name + " " + price);
-			writer.close();
-			System.out.println("記錄成功！");
-		}catch(IOException e) {
-			System.out.println(e);
+	public void addClothes(String name, int price, Scanner sc) {
+		System.out.println("1. cash, 2. on credit");
+		int check = sc.nextInt();
+		if(check == 1) {
+			Purchase pur = new Purchase(name, price);
+			clothes.add(pur);
+		}else {
+			Purchase credit = new Credit(name, price);
+			clothes.add(credit);
 		}
+		System.out.println("記錄成功！");
 	}
 	
 	public int getTotal() {
@@ -45,7 +47,7 @@ public class Clothes {
 		for(Purchase p: clothes) {
 			detail = detail + p.getName() + " " + p.getPrice() + "\n";
 		}
-		detail = "衣著:" + detail + "\nTotal: " + this.getTotal() + "\n";
+		detail = "衣著: \n" + detail + "\nTotal: " + this.getTotal() + "\n";
 		return detail;
 	}
 	

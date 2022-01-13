@@ -1,17 +1,16 @@
-import java.io.*;
 import java.util.*;
 
 public class Foods {
 	private ArrayList<Purchase>foods;
 	private int limit;
-//	private File detail;
-//	private FileWriter writer;
 	
 	public Foods(int limit) {
 		this.limit = limit;
 		this.foods = new ArrayList<Purchase>();
-//		this.detail = new File("foods.txt");
-//		this.writer = new FileWriter("foods.txt");
+	}
+	
+	public ArrayList<Purchase> getList() {
+		return foods;
 	}
 	
 	public int getLimit() {
@@ -22,16 +21,15 @@ public class Foods {
 		this.limit = limit;
 	}
 	
-	public void addFoods(String name, int price) {
-		Purchase pur = new Purchase(name, price);
-		foods.add(pur);
-		try {
-			FileWriter writer = new FileWriter("foods.txt");
-			writer.write(name + " " + price);
-			writer.close();
-			System.out.println("記錄成功！");
-		}catch(IOException e) {
-			System.out.println(e);
+	public void addFoods(String name, int price, Scanner sc) {
+		System.out.println("1. cash, 2. on credit");
+		int check = sc.nextInt();
+		if(check == 1) {
+			Purchase pur = new Purchase(name, price);
+			foods.add(pur);
+		}else {
+			Purchase credit = new Credit(name, price);
+			foods.add(credit);
 		}
 		System.out.println("記錄成功！");
 		
